@@ -15,7 +15,11 @@ describe('User Routes', () => {
       // Arrange
       const userData = {
         email: 'test@example.com',
-        password: 'R3g5T7#gh'
+        password: 'R3g5T7#gh',
+        firstName: 'Test',
+        lastName: 'User',
+        phoneNumber: '1234567890',
+        role: 'user'
       };
 
       // Act
@@ -32,7 +36,11 @@ describe('User Routes', () => {
       // Arrange
       const userData = {
         email: 'test@example.com',
-        password: 'invalidpassword'
+        password: 'invalidpassword',
+        firstName: 'Test',
+        lastName: 'User',
+        phoneNumber: '1234567890',
+        role: 'user'
       };
 
       // Act
