@@ -13,7 +13,7 @@ const GoalData = () => {
           return;
         }
   
-        const response = await fetch("/api/goal", {
+        const response = await fetch("/api/goals", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ const GoalData = () => {
         return;
       }
   
-      const response = await fetch(`/api/goal/${id}`, {
+      const response = await fetch(`/api/goals/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -48,7 +48,7 @@ const GoalData = () => {
       } else {
         console.log("error", id);
       }
-      navigate("/");
+      window.location.reload();
     };
   
     // This is the return statement
@@ -59,7 +59,11 @@ const GoalData = () => {
             <li key={goal._id}>
               <strong>{goal.title}</strong> 
               <br />
-              <span>{goal.text}</span>
+              <span>{goal.description}</span>
+              <br />
+              <span>{goal.targetDate}</span>
+              <br />
+              <span>{goal.location}</span>
               <br />
               <button onClick={() => handleDelete(goal._id)}>Delete</button>
               <br />

@@ -9,21 +9,21 @@ const Signup = ({ setIsAuthenticated }) => {
   const passwordValue = useField("password");
   const firstnameValue = useField("firstName");
   const lastnameValue = useField("lastName");
-  const phonenumberValue = useField("text");
+  const phonenumberValue = useField("phoneNumber");
   const roleValue = useField("role");
 
   const email = emailValue.value;
   const password = passwordValue.value;
-  const firstname = firstnameValue.value;
-  const lastname = lastnameValue.value;
-  const phonenumber = phonenumberValue.value;
+  const firstName = firstnameValue.value;
+  const lastName = lastnameValue.value;
+  const phoneNumber = phonenumberValue.value;
   const role = roleValue.value;
 
   const { signup, error } = useSignup("/api/users/signup");
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    await signup({ email, password, firstname, lastname, phonenumber, role});
+    await signup({ email, password, firstName, lastName, phoneNumber, role});
     if (!error) {
       console.log("success");
       setIsAuthenticated(true);

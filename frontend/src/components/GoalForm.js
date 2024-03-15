@@ -2,7 +2,9 @@ import { useState } from "react";
 
 const GoalForm = () => {
   const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
+  const [description, setText] = useState("");
+  const [targetDate, setDate] = useState("");
+  const [location, setLocation] = useState("");
   const [error, setError] = useState(null);
   const token = localStorage.getItem("token");
 
@@ -14,9 +16,9 @@ const GoalForm = () => {
       return;
     }
 
-    const goal = { title, text };
+    const goal = { title, description, targetDate, location };
 
-    const response = await fetch("/api/goal", {
+    const response = await fetch("/api/goals", {
       method: "POST",
       body: JSON.stringify(goal),
       headers: {
@@ -32,6 +34,8 @@ const GoalForm = () => {
     if (response.ok) {
       setTitle("");
       setText("");
+      setDate("");
+      setLocation("");
       setError(null);
 
       console.log(json, "success");
@@ -40,7 +44,7 @@ const GoalForm = () => {
   };
   return (
     <form className="create" onSubmit={handleSubmit}>
-      <h3>New post</h3>
+      <h3>New Goal</h3>
 
       <label>Title</label>
       <input
@@ -52,9 +56,25 @@ const GoalForm = () => {
       <label></label>
       <input
         type="text"
-        placeholder="Write your post here..."
+        placeholder="Write your description here..."
         onChange={(e) => setText(e.target.value)}
-        value={text}
+        value={description}
+      />
+      <label></label>
+
+      <input
+        type="date"
+        onChange={(e) => setDate(e.target.value)}
+        value={targetDate}
+      />
+
+      <label></label>
+      
+      <input
+        type="text"
+        placeholder="Write your location here..."
+        onChange={(e) => setLocation(e.target.value)}
+        value={location}
       />
 
       <button>Add Post</button>
